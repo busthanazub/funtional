@@ -1,24 +1,43 @@
-import logo from './logo.svg';
+// import React , { useEffect , useState} from 'react';
+import useForm from "./useForm.js"
+// import Test from './Test'
 import './App.css';
+import { useEffect } from "react";
 
-function App() {
+const App = () =>{
+
+// const [showTest,setShowTest] =useState(true)
+// const [name,setName]=useState("")
+// const [email,setEmail]=useState("")
+const [value,handleChange] = useForm({
+  name:"",
+  email:""
+})
+
+useEffect(() => {
+  console.log("running");
+
+  return () => {
+    console.log("unmount");
+  }
+},[value.name,value.email])
+
+// console.log(name);
+// console.log(email);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+        <div>
+          <form action="" autoComplete="off">
+          <input type="text" name='name' value={value.name} onChange={ handleChange} />
+          <input type="text" name="email" value={value.email} onChange={ handleChange} />
+          </form>
+
+                {/* {showTest?<Test/>:null}
+                <button onClick={ () => setShowTest(!showTest)}>click</button> */}
+              {/* <Test/> */}
+
+              <useForm />
+        </div>
   );
 }
 
